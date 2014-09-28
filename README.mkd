@@ -1,0 +1,17 @@
+# IcoMoonKit
+
+## Requirements
+
+- iOS 7.0 or later
+- Xcode 6.0.1 or later
+
+
+## Author
+
+- [Shintaro Kaneko](https://github.com/kaneshin) <kaneshin0120@gmail.com>
+
+
+## License
+
+The MIT License
+
