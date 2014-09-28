@@ -21,7 +21,64 @@
 // THE SOFTWARE.
 
 import UIKit
+import CoreText
 
-class Glyph: NSObject {
+public class Glyph: NSObject {
+    
+    var attributedString: NSMutableAttributedString?
 
+    class func registerGraphicsFont(url: NSURL) {
+        let fontDataProvider = CGDataProviderCreateWithURL(url)
+        let font = CGFontCreateWithDataProvider(fontDataProvider)
+        var error: Unmanaged<CFError>?
+        if !CTFontManagerRegisterGraphicsFont(font, &error) {
+        }
+    }
+    
+    public class func fontName() -> String {
+        return ""
+    }
+    
+    public class func resourceName() -> String {
+        return ""
+    }
+    
+    private func font(size: CGFloat) -> UIFont! {
+        let fontName = self.classForCoder.fontName()
+        if let font = UIFont(name: fontName, size: size) as UIFont? {
+            return font
+        }
+        let resourceComponents = self.classForCoder.resourceName().componentsSeparatedByString(".")
+        let resource = resourceComponents.first!
+        let ext = resourceComponents.last!
+        let url = NSBundle.mainBundle().URLForResource(resource, withExtension: ext)!
+        self.classForCoder.registerGraphicsFont(url)
+        return UIFont(name: fontName, size: size)
+    }
+
+    public init(code: String, size: CGFloat) {
+        super.init()
+        let attributes = [NSFontAttributeName: self.font(size)]
+        self.attributedString = NSMutableAttributedString(string: code, attributes: attributes)
+    }
+
+    // MARK: - Draw Image
+    
+    public func image(size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+
+        let context = UIGraphicsGetCurrentContext()
+        
+        let glyphSize = self.attributedString!.size()
+        let offsetX = 0.5 * (size.width - glyphSize.width)
+        let offsetY = 0.5 * (size.height - glyphSize.height)
+        let offset = CGPointMake(offsetX, offsetY)
+        let rect = CGRect(origin: offset, size: size)
+
+        self.attributedString!.drawInRect(rect)
+        var glyphImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return glyphImage
+    }
+    
 }

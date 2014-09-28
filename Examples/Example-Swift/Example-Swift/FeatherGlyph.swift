@@ -1,4 +1,4 @@
-// ViewController.swift
+// FeatherGlyph.swift
 //
 // Copyright (c) 2014 Shintaro Kaneko
 //
@@ -23,18 +23,14 @@
 import UIKit
 import IcoMoonKit
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let frame = CGRect(x: 0, y: 0, width: 200, height: 40)
-        var imageView = UIImageView(frame: frame)
-        imageView.center = self.view.center
-        let feather = FeatherGlyph(code: "\u{e000}", size: 30)
-        imageView.image = feather.image(CGSize(width: 60, height: 60))
-        imageView.contentMode = UIViewContentMode.Center
-        self.view.addSubview(imageView)
+class FeatherGlyph: Glyph {
+    
+    override class func fontName() -> String {
+        return "Feather"
+    }
+    
+    override class func resourceName() -> String {
+        return "Feather.ttf"
     }
 
 }
-
