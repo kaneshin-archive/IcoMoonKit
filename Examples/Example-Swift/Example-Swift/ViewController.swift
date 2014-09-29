@@ -30,9 +30,7 @@ class ViewController: UIViewController {
         let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         var imageView = UIImageView(frame: frame)
         imageView.center = self.view.center
-        var feather = FeatherGlyph(code: "\u{e002}", size: 200)
-        fath
-        
+        var feather = FeatherGlyph(code: "\u{e002}", color: UIColor.blueColor(), size: 200)
         imageView.image = feather.image(frame.size)
         imageView.contentMode = UIViewContentMode.Center
         self.view.addSubview(imageView)

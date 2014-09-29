@@ -37,9 +37,11 @@ public class Glyph: NSObject {
         }
     }
     
-    public init(code: String, size: CGFloat) {
+    var code: String = ""
+    public init(code: String, color: UIColor = UIColor.blackColor(), size: CGFloat) {
         super.init()
-        let attributes = [NSFontAttributeName: self.font(size)]
+        self.code = code
+        let attributes = [NSFontAttributeName: self.font(size), NSForegroundColorAttributeName: color]
         self.attributedString = NSMutableAttributedString(string: code, attributes: attributes)
     }
     
