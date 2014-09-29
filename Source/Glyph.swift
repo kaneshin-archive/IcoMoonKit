@@ -27,39 +27,46 @@ public class Glyph: NSObject {
     
     var attributedString: NSMutableAttributedString?
 
-    class func registerGraphicsFont(url: NSURL) {
+    class func registerGraphicsFont(url: NSURL?) {
+        assert(url != nil, "There is no a font to register.")
         let fontDataProvider = CGDataProviderCreateWithURL(url)
         let font = CGFontCreateWithDataProvider(fontDataProvider)
         var error: Unmanaged<CFError>?
         if !CTFontManagerRegisterGraphicsFont(font, &error) {
+            println(error)
         }
     }
     
-    public class func fontName() -> String {
-        return ""
-    }
-    
-    public class func resourceName() -> String {
-        return ""
-    }
-    
-    private func font(size: CGFloat) -> UIFont! {
-        let fontName = self.classForCoder.fontName()
-        if let font = UIFont(name: fontName, size: size) as UIFont? {
-            return font
-        }
-        let resourceComponents = self.classForCoder.resourceName().componentsSeparatedByString(".")
-        let resource = resourceComponents.first!
-        let ext = resourceComponents.last!
-        let url = NSBundle.mainBundle().URLForResource(resource, withExtension: ext)!
-        self.classForCoder.registerGraphicsFont(url)
-        return UIFont(name: fontName, size: size)
-    }
-
     public init(code: String, size: CGFloat) {
         super.init()
         let attributes = [NSFontAttributeName: self.font(size)]
         self.attributedString = NSMutableAttributedString(string: code, attributes: attributes)
+    }
+    
+    // MARK: - Sets Font (Glyphs)
+    
+    public func fontName() -> String {
+        assert(false, "ERROR: [\(__FUNCTION__)] => This method must be overridden in subclasse.")
+        return ""
+    }
+    
+    
+    public func fontResource() -> (String, NSBundle?) {
+        assert(false, "ERROR: [\(__FUNCTION__)] => This method must be overridden in subclasse.")
+        return ("", nil)
+    }
+    
+    private func font(size: CGFloat) -> UIFont {
+        if let font = UIFont(name: self.fontName(), size: size) as UIFont? {
+            return font
+        }
+        var (resource, bundle) = self.fontResource()
+        bundle = bundle ?? NSBundle.mainBundle()
+        let filename = resource.stringByDeletingPathExtension
+        let ext = resource.pathExtension
+        let url = bundle!.URLForResource(filename, withExtension: ext)?
+        Glyph.registerGraphicsFont(url)
+        return font(size)
     }
 
     // MARK: - Draw Image

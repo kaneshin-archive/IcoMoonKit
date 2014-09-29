@@ -23,14 +23,14 @@
 import UIKit
 import IcoMoonKit
 
-class FeatherGlyph: Glyph {
+public class FeatherGlyph: Glyph {
     
-    override class func fontName() -> String {
+    override public func fontName() -> String {
         return "Feather"
     }
     
-    override class func resourceName() -> String {
-        return "Feather.ttf"
+    override public func fontResource() -> (String, NSBundle) {
+        return ("Feather.ttf", NSBundle.mainBundle())
     }
 
 }
