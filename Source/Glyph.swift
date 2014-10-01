@@ -23,36 +23,113 @@
 import UIKit
 import CoreText
 
+typealias GlyphString = NSMutableAttributedString
+extension GlyphString {
+
+    private var range: NSRange {
+        return NSMakeRange(0, self.length ?? 0)
+    }
+    
+    private func attributedText() -> NSAttributedString {
+        return self.copy() as NSAttributedString
+    }
+    
+    private func attribute(attrName: String) -> AnyObject? {
+        return self.attribute(attrName, atIndex: 0, effectiveRange: nil)
+    }
+
+    private func addAttribute(name: String, value: AnyObject) {
+        self.addAttribute(name, value: value, range: self.range)
+    }
+    
+    private func removeAttribute(name: String) {
+        self.removeAttribute(name, range: self.range)
+    }
+    
+}
+
 public class Glyph: NSObject {
     
-    var attributedString: NSMutableAttributedString?
+    private var glyphString: GlyphString?
 
-    class func registerGraphicsFont(url: NSURL?) {
-        assert(url != nil, "There is no a font to register.")
-        let fontDataProvider = CGDataProviderCreateWithURL(url)
-        let font = CGFontCreateWithDataProvider(fontDataProvider)
-        var error: Unmanaged<CFError>?
-        if !CTFontManagerRegisterGraphicsFont(font, &error) {
-            println(error)
+    // MARK: -
+
+    public var attributedText: NSAttributedString? {
+        return self.glyphString?.attributedText()
+    }
+
+    public var code: String? {
+        return self.glyphString?.string
+    }
+    
+    public var font: UIFont? {
+        return self.glyphString?.attribute(NSFontAttributeName) as? UIFont
+    }
+    
+    public var size: CGFloat {
+        return self.font?.pointSize ?? 0
+    }
+
+    public var color: UIColor? {
+        didSet {
+            self.glyphString?.removeAttribute(NSForegroundColorAttributeName)
+            self.glyphString?.addAttribute(NSForegroundColorAttributeName, value: self.color!)
         }
     }
     
-    var code: String = ""
-    public init(code: String, color: UIColor = UIColor.blackColor(), size: CGFloat) {
-        super.init()
-        self.code = code
-        let attributes = [NSFontAttributeName: self.font(size), NSForegroundColorAttributeName: color]
-        self.attributedString = NSMutableAttributedString(string: code, attributes: attributes)
+    public var backgroundColor: UIColor? {
+        didSet {
+            self.glyphString?.removeAttribute(NSBackgroundColorAttributeName)
+            self.glyphString?.addAttribute(NSBackgroundColorAttributeName, value: self.backgroundColor!)
+        }
     }
     
-    // MARK: - Sets Font (Glyphs)
+    /**
+     * MARK: - Designated Initializer
+     *
+     * Creates glyph instance with setting character code, size and color.
+     *
+     * @param code
+     * @param size
+     * @param color
+     */
+    public init(code: String, size: CGFloat, color: UIColor) {
+        super.init()
+        self.setup(self.font(size), code: code, color: color)
+    }
+
+    convenience public init(code: String, size: CGFloat) {
+        self.init(code: code, size: size, color: UIColor.blackColor())
+    }
     
+    /**
+     * MARK: - Setup Glyph
+     *
+     * @param font
+     * @param code
+     * @param color
+     */
+    private func setup(font: UIFont, code: String, color: UIColor) {
+        let attributes = [
+            NSBackgroundColorAttributeName: UIColor.clearColor(),
+            NSFontAttributeName: font,
+            NSForegroundColorAttributeName: color]
+        self.glyphString = NSMutableAttributedString(string: code, attributes: attributes)
+    }
+    
+    private func setup(font: UIFont, code: String) {
+        self.setup(font, code: code, color: self.color!)
+    }
+    
+    // MARK: - Sets Glyph Font
+    
+    // Override method
     public func fontName() -> String {
         assert(false, "ERROR: [\(__FUNCTION__)] => This method must be overridden in subclasse.")
         return ""
     }
-    
-    
+
+    // Override method
     public func fontResource() -> (String, NSBundle?) {
         assert(false, "ERROR: [\(__FUNCTION__)] => This method must be overridden in subclasse.")
         return ("", nil)
@@ -70,6 +147,16 @@ public class Glyph: NSObject {
         Glyph.registerGraphicsFont(url)
         return font(size)
     }
+    
+    private class func registerGraphicsFont(url: NSURL?) {
+        assert(url != nil, "Font file isn't at the URL.")
+        let fontDataProvider = CGDataProviderCreateWithURL(url)
+        let font = CGFontCreateWithDataProvider(fontDataProvider)
+        var error: Unmanaged<CFError>?
+        if !CTFontManagerRegisterGraphicsFont(font, &error) {
+            println(error)
+        }
+    }
 
     // MARK: - Draw Image
     
@@ -78,13 +165,13 @@ public class Glyph: NSObject {
 
         let context = UIGraphicsGetCurrentContext()
         
-        let glyphSize = self.attributedString!.size()
+        let glyphSize = self.glyphString!.size()
         let offsetX = 0.5 * (size.width - glyphSize.width)
         let offsetY = 0.5 * (size.height - glyphSize.height)
         let offset = CGPointMake(offsetX, offsetY)
         let rect = CGRect(origin: offset, size: size)
 
-        self.attributedString!.drawInRect(rect)
+        self.glyphString!.drawInRect(rect)
         var glyphImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return glyphImage
