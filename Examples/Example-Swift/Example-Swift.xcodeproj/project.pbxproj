@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		794EF43219D86342009E1AC2 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 794EF43119D86342009E1AC2 /* Feather.ttf */; };
-		794EF43519D86504009E1AC2 /* FeatherGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794EF43419D86504009E1AC2 /* FeatherGlyph.swift */; };
+		799E54D319E2E5C400E32013 /* FeatherGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E54D219E2E5C400E32013 /* FeatherGlyph.swift */; };
+		799E54D519E2E73600E32013 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 799E54D419E2E73600E32013 /* Feather.ttf */; };
 		79FDFA6D19D85D8E0063E89E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FDFA6C19D85D8E0063E89E /* AppDelegate.swift */; };
 		79FDFA6F19D85D8E0063E89E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FDFA6E19D85D8E0063E89E /* ViewController.swift */; };
 		79FDFA7219D85D8E0063E89E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79FDFA7019D85D8E0063E89E /* Main.storyboard */; };
@@ -57,8 +57,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		794EF43119D86342009E1AC2 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
-		794EF43419D86504009E1AC2 /* FeatherGlyph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatherGlyph.swift; sourceTree = "<group>"; };
+		799E54D219E2E5C400E32013 /* FeatherGlyph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatherGlyph.swift; sourceTree = "<group>"; };
+		799E54D419E2E73600E32013 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = ../../../Resource/Feather.ttf; sourceTree = "<group>"; };
 		79FDFA6719D85D8E0063E89E /* Example-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79FDFA6B19D85D8E0063E89E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79FDFA6C19D85D8E0063E89E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,10 +101,10 @@
 		79FDFA6919D85D8E0063E89E /* Example-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				799E54D419E2E73600E32013 /* Feather.ttf */,
+				799E54D219E2E5C400E32013 /* FeatherGlyph.swift */,
 				79FDFA6C19D85D8E0063E89E /* AppDelegate.swift */,
 				79FDFA6E19D85D8E0063E89E /* ViewController.swift */,
-				794EF43419D86504009E1AC2 /* FeatherGlyph.swift */,
-				794EF43119D86342009E1AC2 /* Feather.ttf */,
 				79FDFA7019D85D8E0063E89E /* Main.storyboard */,
 				79FDFA7319D85D8E0063E89E /* Images.xcassets */,
 				79FDFA7519D85D8E0063E89E /* LaunchScreen.xib */,
@@ -214,7 +214,7 @@
 			files = (
 				79FDFA7219D85D8E0063E89E /* Main.storyboard in Resources */,
 				79FDFA7719D85D8E0063E89E /* LaunchScreen.xib in Resources */,
-				794EF43219D86342009E1AC2 /* Feather.ttf in Resources */,
+				799E54D519E2E73600E32013 /* Feather.ttf in Resources */,
 				79FDFA7419D85D8E0063E89E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,7 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				794EF43519D86504009E1AC2 /* FeatherGlyph.swift in Sources */,
+				799E54D319E2E5C400E32013 /* FeatherGlyph.swift in Sources */,
 				79FDFA6F19D85D8E0063E89E /* ViewController.swift in Sources */,
 				79FDFA6D19D85D8E0063E89E /* AppDelegate.swift in Sources */,
 			);
