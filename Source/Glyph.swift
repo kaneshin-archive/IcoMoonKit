@@ -95,7 +95,7 @@ public class Glyph: NSObject {
      */
     public init(code: String, size: CGFloat, color: UIColor) {
         super.init()
-        self.setup(self.font(size), code: code, color: color)
+        self.setup(font: self.font(size: size), code: code, color: color)
     }
 
     convenience public init(code: String, size: CGFloat) {
@@ -109,7 +109,7 @@ public class Glyph: NSObject {
      * @param code
      * @param color
      */
-    private func setup(font: UIFont, code: String, color: UIColor) {
+    private func setup(#font: UIFont, code: String, color: UIColor) {
         let attributes = [
             NSBackgroundColorAttributeName: UIColor.clearColor(),
             NSFontAttributeName: font,
@@ -117,8 +117,8 @@ public class Glyph: NSObject {
         self.glyphString = NSMutableAttributedString(string: code, attributes: attributes)
     }
     
-    private func setup(font: UIFont, code: String) {
-        self.setup(font, code: code, color: self.color!)
+    private func setup(#font: UIFont, code: String) {
+        self.setup(font: font, code: code, color: self.color!)
     }
     
     // MARK: - Sets Glyph Font
@@ -135,7 +135,7 @@ public class Glyph: NSObject {
         return ("", nil)
     }
     
-    private func font(size: CGFloat) -> UIFont {
+    private func font(#size: CGFloat) -> UIFont {
         if let font = UIFont(name: self.fontName(), size: size) as UIFont? {
             return font
         }
@@ -145,7 +145,7 @@ public class Glyph: NSObject {
         let ext = resource.pathExtension
         let url = bundle!.URLForResource(filename, withExtension: ext)?
         Glyph.registerGraphicsFont(url)
-        return font(size)
+        return font(size: size)
     }
     
     private class func registerGraphicsFont(url: NSURL?) {
@@ -160,7 +160,7 @@ public class Glyph: NSObject {
 
     // MARK: - Draw Image
     
-    public func image(size: CGSize) -> UIImage {
+    public func image(#size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
 
         let context = UIGraphicsGetCurrentContext()

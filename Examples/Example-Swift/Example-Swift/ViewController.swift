@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         var feather = FeatherGlyph.AirPlay(40, color: UIColor.yellowColor())
         feather.color = UIColor.redColor()
         feather.backgroundColor = UIColor.purpleColor()
-        imageView.image = feather.image(frame.size)
+        imageView.image = feather.image(size: frame.size)
         imageView.contentMode = UIViewContentMode.Center
         
         // self.view.addSubview(imageView)
