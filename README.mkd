@@ -1,10 +1,32 @@
 # IcoMoonKit
 
+[icoMoon](https://icomoon.io)
+
+
 ## Requirements
 
 - iOS 7.0 or later
 - Xcode 6.1 or later
 
+
+## Installation
+
+- Clone `IcoMoonKit` as a git submodule.
+- Add `IcoMoonKit.xcodeproj` file into your Xcode project.
+- Link `IcoMoonKit.framework` product for your target.
+- Embed `IcoMoonKit.framework`
+
+
+----
+
+## Usage
+
+```
+./icomoon.rb selection.json
+```
+
+
+----
 
 ## Author
 

@@ -21,10 +21,11 @@ public class ___GLYPH_CLASS_NAME___: Glyph {
 
     // MARK: -
 
-    enum Type: String {
-    }
+    ___GLYPH_ENUM___
 
-    // MARK: -
+}
 
-    ___GLYPH_CLASS___
+extension ___GLYPH_CLASS_NAME___ {
+    ___GLYPH_CLASS_FUNC___
+
 }

@@ -27,10 +27,11 @@ module IcoMoonKit
             elsif line =~ /___FONT_FILE___/
               line = line.gsub(/___FONT_FILE___/, @font_name + ".ttf")
             end
-            if line =~ /enum Type: String/
-              dest.write(line)
+            if line =~ /___GLYPH_ENUM___/
+              dest.write("    enum Type: String {\n")
               dest.write(enum(@icons))
-            elsif line =~ /___GLYPH_CLASS___/
+              dest.write("    }")
+            elsif line =~ /___GLYPH_CLASS_FUNC___/
               dest.write(class_func(@font_name, @icons))
             else
               dest.write(line)
@@ -67,9 +68,10 @@ module IcoMoonKit
       icons.each{|v|
         prop = v["properties"]
         name = get_glyph_name(prop)
-        dest += "    public class func #{name}(size: CGFloat, color: UIColor) -> #{font_name}Glyph {\n"
+        dest += "\n"
+        dest += "    public class func #{name}(#size: CGFloat, color: UIColor) -> #{font_name}Glyph {\n"
         dest += "        return #{font_name}Glyph(type: .#{name}, size: size, color: color)\n"
-        dest += "    }\n\n"
+        dest += "    }\n"
       }
       return dest
     end
@@ -78,6 +80,5 @@ module IcoMoonKit
 
 end
 
-parser = IcoMoonKit::Parser.new(ARGV[0])
-parser.run
+IcoMoonKit::Parser.new(ARGV[0]).run
 

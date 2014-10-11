@@ -52,8 +52,6 @@ public class Glyph: NSObject {
     
     private var glyphString: GlyphString?
 
-    // MARK: -
-
     public var attributedText: NSAttributedString? {
         return self.glyphString?.attributedText()
     }
@@ -85,14 +83,13 @@ public class Glyph: NSObject {
     }
     
     /**
-     * MARK: - Designated Initializer
-     *
-     * Creates glyph instance with setting character code, size and color.
-     *
-     * @param code
-     * @param size
-     * @param color
-     */
+        Designated Initializer
+        Creates glyph instance with setting character code, size and color.
+    
+        :param: code
+        :param: size
+        :param: color
+    */
     public init(code: String, size: CGFloat, color: UIColor) {
         super.init()
         self.setup(font: self.font(size: size), code: code, color: color)
@@ -103,17 +100,18 @@ public class Glyph: NSObject {
     }
     
     /**
-     * MARK: - Setup Glyph
-     *
-     * @param font
-     * @param code
-     * @param color
-     */
+        Set attributes for a glyph.
+    
+        :param: font
+        :param: code
+        :param: color
+    */
     private func setup(#font: UIFont, code: String, color: UIColor) {
         let attributes = [
             NSBackgroundColorAttributeName: UIColor.clearColor(),
             NSFontAttributeName: font,
-            NSForegroundColorAttributeName: color]
+            NSForegroundColorAttributeName: color
+        ]
         self.glyphString = NSMutableAttributedString(string: code, attributes: attributes)
     }
     
@@ -123,13 +121,11 @@ public class Glyph: NSObject {
     
     // MARK: - Sets Glyph Font
     
-    // Override method
     public func fontName() -> String {
         assert(false, "ERROR: [\(__FUNCTION__)] => This method must be overridden in subclasse.")
         return ""
     }
 
-    // Override method
     public func fontResource() -> (String, NSBundle?) {
         assert(false, "ERROR: [\(__FUNCTION__)] => This method must be overridden in subclasse.")
         return ("", nil)
@@ -149,7 +145,7 @@ public class Glyph: NSObject {
     }
     
     private class func registerGraphicsFont(url: NSURL?) {
-        assert(url != nil, "Font file isn't at the URL.")
+        assert(url != nil, "Font file doesn't exist.")
         let fontDataProvider = CGDataProviderCreateWithURL(url)
         let font = CGFontCreateWithDataProvider(fontDataProvider)
         var error: Unmanaged<CFError>?
@@ -158,22 +154,25 @@ public class Glyph: NSObject {
         }
     }
 
-    // MARK: - Draw Image
-    
+    /**
+        Creates an image of the glyph.
+
+        :param: size The size of the image.
+
+        :returns: An image of the glyph.
+    */
     public func image(#size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-
         let context = UIGraphicsGetCurrentContext()
-        
         let glyphSize = self.glyphString!.size()
         let offsetX = 0.5 * (size.width - glyphSize.width)
         let offsetY = 0.5 * (size.height - glyphSize.height)
         let offset = CGPointMake(offsetX, offsetY)
         let rect = CGRect(origin: offset, size: size)
-
         self.glyphString!.drawInRect(rect)
         var glyphImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
         return glyphImage
     }
     

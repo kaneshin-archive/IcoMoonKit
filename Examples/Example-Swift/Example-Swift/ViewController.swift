@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         var imageView = UIImageView(frame: frame)
         imageView.center = self.view.center
-        var feather = FeatherGlyph.AirPlay(40, color: UIColor.yellowColor())
+        var feather = FeatherGlyph.AirPlay(size: 40, color: UIColor.yellowColor())
         feather.color = UIColor.redColor()
         feather.backgroundColor = UIColor.purpleColor()
         imageView.image = feather.image(size: frame.size)
@@ -40,7 +40,6 @@ class ViewController: UIViewController {
         var label = UILabel(frame: frame)
         label.attributedText = feather.attributedText
         self.view.addSubview(label)
-        println(feather.code)
     }
 
 }
