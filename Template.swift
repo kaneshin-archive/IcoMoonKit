@@ -1,7 +1,7 @@
 import Foundation
 import IcoMoonKit
 
-public class FeatherGlyph: Glyph {
+public class ___GLYPH_CLASS_NAME___: Glyph {
 
     // MARK: - Initialize
 
@@ -12,11 +12,11 @@ public class FeatherGlyph: Glyph {
     // MARK: - Font
 
     override public func fontName() -> String {
-        return "#__FONT_NAME__#"
+        return "___FONT_NAME___"
     }
 
     override public func fontResource() -> (String, NSBundle) {
-        return ("#__FONT_FILE__#", NSBundle.mainBundle())
+        return ("___FONT_FILE___", NSBundle.mainBundle())
     }
 
     // MARK: -
@@ -26,5 +26,5 @@ public class FeatherGlyph: Glyph {
 
     // MARK: -
 
-    #__GLYPH_CLASS__#
+    ___GLYPH_CLASS___
 }

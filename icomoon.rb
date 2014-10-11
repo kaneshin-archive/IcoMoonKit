@@ -16,19 +16,21 @@ module IcoMoonKit
 
     def run()
       template = "Template.swift"
-      filename = @font_name + "Glyph.swift"
-      open(filename, "w") {|dest|
+      class_name = @font_name + "Glyph"
+      open(class_name + ".swift", "w") {|dest|
         open(template) {|f|
           f.each {|line|
-            if line =~ /#__FONT_NAME__#/
-              line = line.gsub(/#__FONT_NAME__#/, @font_name)
-            elsif line =~ /#__FONT_FILE__#/
-              line = line.gsub(/#__FONT_FILE__#/, @font_name + ".ttf")
+            if line =~ /___GLYPH_CLASS_NAME___/
+              line = line.gsub(/___GLYPH_CLASS_NAME___/, class_name)
+            elsif line =~ /___FONT_NAME___/
+              line = line.gsub(/___FONT_NAME___/, @font_name)
+            elsif line =~ /___FONT_FILE___/
+              line = line.gsub(/___FONT_FILE___/, @font_name + ".ttf")
             end
             if line =~ /enum Type: String/
               dest.write(line)
               dest.write(enum(@icons))
-            elsif line =~ /#__GLYPH_CLASS__#/
+            elsif line =~ /___GLYPH_CLASS___/
               dest.write(class_func(@font_name, @icons))
             else
               dest.write(line)
