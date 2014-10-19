@@ -1,6 +1,6 @@
 # IcoMoonKit
 
-[icoMoon](https://icomoon.io)
+[IcoMoon](https://icomoon.io)
 
 
 ## Requirements

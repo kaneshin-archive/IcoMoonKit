@@ -82,6 +82,10 @@ public class Glyph: NSObject {
         }
     }
     
+    public var image: UIImage {
+        return self.image(size: CGSize(width: self.size, height: self.size))
+    }
+    
     /**
         Designated Initializer
         Creates glyph instance with setting character code, size and color.
