@@ -6,7 +6,7 @@
 ## Requirements
 
 - iOS 7.0 or later
-- Xcode 6.1 or later
+- Xcode 6.1
 
 
 ## Installation
