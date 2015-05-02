@@ -31,7 +31,7 @@ extension GlyphString {
     }
     
     private func attributedText() -> NSAttributedString {
-        return self.copy() as NSAttributedString
+        return self.copy() as! NSAttributedString
     }
     
     private func attribute(attrName: String) -> AnyObject? {
@@ -143,7 +143,7 @@ public class Glyph: NSObject {
         bundle = bundle ?? NSBundle.mainBundle()
         let filename = resource.stringByDeletingPathExtension
         let ext = resource.pathExtension
-        let url = bundle!.URLForResource(filename, withExtension: ext)?
+        let url = bundle!.URLForResource(filename, withExtension: ext)
         Glyph.registerGraphicsFont(url)
         return font(size: size)
     }
