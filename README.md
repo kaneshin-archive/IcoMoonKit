@@ -22,7 +22,7 @@ And, It provides code generator for vendor such an [IcoMoon](https://icomoon.io/
 
 #### Carthage
 
-1. Add the following to your *Cartfile*: `github "kaneshin/IcoMoonKit" ~> 1.0`.
+1. Add the following to your *Cartfile*: `github "kaneshin/IcoMoonKit" ~> 0.1`.
 2. Run `carthage update`.
 3. Add IcoMoonKit as an embedded framework.
 
