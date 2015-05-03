@@ -1,6 +1,6 @@
-// IcoMoonKit.h
+// Font.swift
 //
-// Copyright (c) 2014-2015 Shintaro Kaneko
+// Copyright (c) 2015 Shintaro Kaneko
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#if os(iOS)
+    import UIKit.UIFont
+    public typealias FontType = UIFont
+#else
+    import AppKit.NSFont
+    public typealias FontType = NSFont
+#endif
 
-FOUNDATION_EXPORT double IcoMoonKitVersionNumber;
-FOUNDATION_EXPORT const unsigned char IcoMoonKitVersionString[];
+public typealias Font = FontType
+
+internal let FontAttributeName = NSFontAttributeName

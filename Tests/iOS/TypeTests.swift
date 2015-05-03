@@ -1,4 +1,4 @@
-// IcoMoonKit.h
+// TypeTests.swift
 //
 // Copyright (c) 2014-2015 Shintaro Kaneko
 //
@@ -20,7 +20,33 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+import Foundation
+import UIKit
+import XCTest
+import IcoMoonKit
 
-FOUNDATION_EXPORT double IcoMoonKitVersionNumber;
-FOUNDATION_EXPORT const unsigned char IcoMoonKitVersionString[];
+class TypeTests: XCTestCase {
+
+    var obj: AnyObject?
+
+    override func tearDown() {
+        obj = nil
+        super.tearDown()
+    }
+
+    func testImageType() {
+        obj = Image()
+        XCTAssertTrue(obj is UIImage, "Image should be UIImage")
+    }
+
+    func testColorType() {
+        obj = Color()
+        XCTAssert(obj is UIColor, "Color should be UIColor")
+    }
+
+    func testFontType() {
+        obj = Font()
+        XCTAssertTrue(obj is UIFont, "Font should be UIFont")
+    }
+
+}

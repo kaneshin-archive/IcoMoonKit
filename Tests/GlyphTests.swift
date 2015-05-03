@@ -1,4 +1,4 @@
-// IcoMoonKit.h
+// GlyphTests.swift
 //
 // Copyright (c) 2014-2015 Shintaro Kaneko
 //
@@ -20,7 +20,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+import Foundation
+import XCTest
+import IcoMoonKit
 
-FOUNDATION_EXPORT double IcoMoonKitVersionNumber;
-FOUNDATION_EXPORT const unsigned char IcoMoonKitVersionString[];
+class GlyphTests: XCTestCase {
+
+    override func setUp() {
+        super.setUp()
+    }
+
+    override func tearDown() {
+        super.tearDown()
+    }
+
+    func testExample() {
+        XCTAssert(true, "Pass")
+    }
+    
+}

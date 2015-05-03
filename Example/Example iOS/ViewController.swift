@@ -1,6 +1,6 @@
-// IcoMoonKit.h
+// ViewController.swift
 //
-// Copyright (c) 2014-2015 Shintaro Kaneko
+// Copyright (c) 2015 Shintaro Kaneko
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+import UIKit
 
-FOUNDATION_EXPORT double IcoMoonKitVersionNumber;
-FOUNDATION_EXPORT const unsigned char IcoMoonKitVersionString[];
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        var imageView = UIImageView(frame: frame)
+        imageView.center = self.view.center
+        var feather = FeatherGlyph.AirPlay(size: 140, color: UIColor.whiteColor())
+        feather.color = UIColor.blackColor()
+        feather.backgroundColor = UIColor.whiteColor()
+        imageView.image = feather.image(size: frame.size)
+        imageView.contentMode = UIViewContentMode.Center
+        self.view.addSubview(imageView)
+
+        var label = UILabel(frame: frame)
+        label.attributedText = feather.attributedText
+        self.view.addSubview(label)
+    }
+
+}
+

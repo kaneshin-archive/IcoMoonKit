@@ -1,6 +1,6 @@
 // IcoMoonKitTests.swift
 //
-// Copyright (c) 2014 Shintaro Kaneko
+// Copyright (c) 2014-2015 Shintaro Kaneko
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,8 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import UIKit
+import Foundation
 import XCTest
+import IcoMoonKit
 
 class IcoMoonKitTests: XCTestCase {
     
@@ -35,11 +36,6 @@ class IcoMoonKitTests: XCTestCase {
     
     func testExample() {
         XCTAssert(true, "Pass")
-    }
-    
-    func testPerformanceExample() {
-        self.measureBlock() {
-        }
     }
 
 }
