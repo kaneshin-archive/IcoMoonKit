@@ -1,11 +1,12 @@
 import Foundation
+import CoreGraphics
 import IcoMoonKit
 
 public class ___GLYPH_CLASS_NAME___: Glyph {
 
     // MARK: - Initialize
 
-    convenience init(type: Type, size: CGFloat, color: UIColor) {
+    convenience init(type: Type, size: CGFloat, color: IcoMoonKit.Color) {
         self.init(code: type.rawValue, size: size, color: color)
     }
 

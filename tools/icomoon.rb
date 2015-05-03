@@ -69,7 +69,7 @@ module IcoMoonKit
         prop = v["properties"]
         name = get_glyph_name(prop)
         dest += "\n"
-        dest += "    public class func #{name}(#size: CGFloat, color: UIColor) -> #{font_name}Glyph {\n"
+        dest += "    public class func #{name}(#size: CGFloat, color: IcoMoonKit.Color) -> #{font_name}Glyph {\n"
         dest += "        return #{font_name}Glyph(type: .#{name}, size: size, color: color)\n"
         dest += "    }\n"
       }

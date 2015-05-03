@@ -54,12 +54,7 @@ extension GlyphString {
 
 }
 
-protocol GlyphDataSource {
-    func fontName() -> String
-    func fontResource() -> (String, NSBundle?)
-}
-
-public class Glyph: NSObject, GlyphDataSource {
+public class Glyph: NSObject {
 
     private var glyphString: GlyphString?
 
