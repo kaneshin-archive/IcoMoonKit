@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>IcoMoonKit by kaneshin</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>IcoMoonKit</h1>
+        <h2>IcoMoonKit is an iconic font library written in Swift.</h2>
+        <a href="https://github.com/kaneshin/IcoMoonKit" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="icomoonkit" class="anchor" href="#icomoonkit" aria-hidden="true"><span class="octicon octicon-link"></span></a>IcoMoonKit</h1>
+
+<p><a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a></p>
+
+<p>IcoMoonKit is an iconic font library written in Swift.</p>
+
+<p>And, It provides code generator for vendor such an <a href="https://icomoon.io/">IcoMoon</a>.</p>
+
+<h2>
+<a id="requirement" class="anchor" href="#requirement" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirement</h2>
+
+<ul>
+<li>Xcode 6.3+</li>
+<li>iOS
+
+<ul>
+<li>8.0+ (Available as a dynamic framework)</li>
+<li>7.0+ (Swift code is compatible)</li>
+</ul>
+</li>
+<li>OSX
+
+<ul>
+<li>Not yet supported.</li>
+</ul>
+</li>
+<li>Go, Ruby (If you want to use tools.)</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<h3>
+<a id="dynamic-framework" class="anchor" href="#dynamic-framework" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dynamic Framework</h3>
+
+<h4>
+<a id="carthage" class="anchor" href="#carthage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Carthage</h4>
+
+<ol>
+<li>Add the following to your <em>Cartfile</em>: <code>github "kaneshin/IcoMoonKit" ~&gt; 0.1</code>.</li>
+<li>Run <code>carthage update</code>.</li>
+<li>Add IcoMoonKit as an embedded framework.</li>
+</ol>
+
+<h4>
+<a id="submodule" class="anchor" href="#submodule" aria-hidden="true"><span class="octicon octicon-link"></span></a>Submodule</h4>
+
+<ol>
+<li>Clone <code>IcoMoonKit</code> as a git submodule.</li>
+<li>Add <code>IcoMoonKit.xcodeproj</code> file into your Xcode project.</li>
+<li>Link <code>IcoMoonKit.framework</code> product for your target.</li>
+<li>Embed <code>IcoMoonKit.framework</code>.</li>
+</ol>
+
+<h3>
+<a id="tools" class="anchor" href="#tools" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tools</h3>
+
+<h4>
+<a id="icomoon-generator" class="anchor" href="#icomoon-generator" aria-hidden="true"><span class="octicon octicon-link"></span></a>IcoMoon Generator</h4>
+
+<pre><code>$ go get github.com/kaneshin/IcoMoonKit/tools/icom
+</code></pre>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Add generated code into your project if you use <a href="https://github.com/kaneshin/IcoMoonKit/tree/master/tools">generator</a>.</p>
+
+<div class="highlight highlight-swift"><pre><span class="pl-k">var</span> feather <span class="pl-k">=</span> FeatherGlyph<span class="pl-k">.</span>AirPlay(size: <span class="pl-c1">40</span>, color: UIColor<span class="pl-k">.</span>whiteColor())
+feather<span class="pl-k">.</span>color <span class="pl-k">=</span> UIColor<span class="pl-k">.</span>blackColor()
+feather<span class="pl-k">.</span>backgroundColor <span class="pl-k">=</span> UIColor<span class="pl-k">.</span>whiteColor()
+
+<span class="pl-c">// As an image</span>
+imageView<span class="pl-k">.</span>image <span class="pl-k">=</span> feather<span class="pl-k">.</span>image(size: frame<span class="pl-k">.</span>size)
+
+<span class="pl-c">// An a text</span>
+label<span class="pl-k">.</span>attributedText <span class="pl-k">=</span> feather<span class="pl-k">.</span>attributedText</pre></div>
+
+<h3>
+<a id="icomoon-generator-1" class="anchor" href="#icomoon-generator-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>IcoMoon Generator</h3>
+
+<p>See <a href="https://github.com/kaneshin/IcoMoonKit/tree/master/tools">tools/README.md</a>.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="http://kaneshin.mit-license.org/">The MIT License (MIT)</a></p>
+
+<h2>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h2>
+
+<p><a href="https://github.com/kaneshin">Shintaro Kaneko</a> <a href="mailto:kaneshin0120@gmail.com">kaneshin0120@gmail.com</a></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/kaneshin/IcoMoonKit/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/kaneshin/IcoMoonKit/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/kaneshin/IcoMoonKit"></a> is maintained by <a href="https://github.com/kaneshin">kaneshin</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
