@@ -37,7 +37,7 @@ And, It provides code generator for vendor such an [IcoMoon](https://icomoon.io/
 
 #### IcoMoon Generator
 
-** Underconstructing **
+**Underconstructing, use ruby version instead of Go tool.**
 
 ```
 $ go get github.com/kaneshin/IcoMoonKit/tools/icom
